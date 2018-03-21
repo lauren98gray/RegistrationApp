@@ -18,8 +18,24 @@ public class Main {
         int totalCurriculumHours = calculateTotalCurriculumHours(curriculumLines);
         System.out.println("The total number of hours in the curriculum is " + totalCurriculumHours);
 
+        //Count the number of[DEPT] courses
+        String department = "CPSC";
+        int numCoursesInDept = countNumDEPTCourses(curriculumLines, department);
+        System.out.println("\nThere are " + numCoursesInDept + " course(s) in the " + department + " department.");
 
 
+    }
+
+    private static int countNumDEPTCourses(ArrayList<String> curriculum, String DEPT) {
+        int count = 0;
+        for (String line : curriculum){
+            //if (line.substring(0,4).equals(DEPT)) {
+            //this works so that the CPSC elective is also included
+            if (line.contains(DEPT)){
+                count++;
+            }
+        }
+        return count;
     }
 
     private static String formatCurriculumForOutput(ArrayList<String> curriculumLines) {
