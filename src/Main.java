@@ -16,14 +16,33 @@ public class Main {
 
         //Calculate the total hours in the curriculum
         int totalCurriculumHours = calculateTotalCurriculumHours(curriculumLines);
-        System.out.println("The total number of hours in the curriculum is " + totalCurriculumHours);
+        System.out.println("The total number of hours in the curriculum is " + totalCurriculumHours + ".");
 
-        //Count the number of[DEPT] courses
+        //Count the number of [DEPT] courses
         String department = "CPSC";
         int numCoursesInDept = countNumDEPTCourses(curriculumLines, department);
         System.out.println("\nThere are " + numCoursesInDept + " course(s) in the " + department + " department.");
 
+        //Determine if a course is in the curriculum
+        String course = "CPSC 2740";
+        boolean courseInCurriculum = checkIfInCurriculum(curriculumLines, course);
+        if (courseInCurriculum){
+            System.out.println("\n" + course + " is in the curriculum.");
+        } else {
+            System.out.println("\n" + course + " is not in the curriculum.");
+        }
 
+
+    }
+
+    private static boolean checkIfInCurriculum(ArrayList<String> curriculumLines, String course) {
+        int check = 0;
+        for (String line : curriculumLines){
+            if (line.substring(0,9).equals(course)){
+                check = 1;
+            }
+        }
+        return check == 1;
     }
 
     private static int countNumDEPTCourses(ArrayList<String> curriculum, String DEPT) {
@@ -71,7 +90,5 @@ public class Main {
         }
         return lines;
     }
-
-
 
 }
