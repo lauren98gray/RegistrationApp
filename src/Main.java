@@ -7,7 +7,7 @@ public class Main {
 
         System.out.println("\n\nHello, RegistrationApp!\n\n");
 
-        //Read and store the data from "curriculum.dat"
+        /*//Read and store the data from "curriculum.dat"
         ArrayList<String> curriculumLines = createListFromFileLines("curriculum.dat");
 
         //Output the data
@@ -30,7 +30,31 @@ public class Main {
             System.out.println("\n" + course + " is in the curriculum.");
         } else {
             System.out.println("\n" + course + " is not in the curriculum.");
+        }*/
+
+        //Read, store, and output the data from "curriculum.dat"
+        Curriculum curriculum = new Curriculum("curriculum.dat");
+        System.out.println("Curriculum:\n" + curriculum);
+
+        //Calculate the total hours in the curriculum
+        int totalCurriculumHours = curriculum.calculateTotalCurriculumHours();
+        System.out.println( "The total number of hours in the curriculum is " + totalCurriculumHours + "." );
+
+        //Count the number of [DEPT] courses
+        String department = "CPSC";
+        int numDEPTCourses = curriculum.countNumDEPTCourses(department);
+        System.out.println("\nThere are " + numDEPTCourses + " " + department + " courses in the curriculum.");
+
+        //Check if a course is in the curriculum
+        String course = "CPSC 2740";
+        boolean courseInCurriculum = curriculum.checkIfInCurriculum(course);
+        if (courseInCurriculum){
+            System.out.println("\n" + course + " is in the curriculum.");
+        } else {
+            System.out.println("\n" + course + " is not in the curriculum.");
         }
+
+
 
 
     }
