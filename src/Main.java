@@ -7,30 +7,7 @@ public class Main {
 
         System.out.println("\n\nHello, RegistrationApp!\n\n");
 
-        /*//Read and store the data from "curriculum.dat"
-        ArrayList<String> curriculumLines = createListFromFileLines("curriculum.dat");
-
-        //Output the data
-        String outputCurriculum = formatCurriculumForOutput(curriculumLines);
-        System.out.println("The curriculum is as follows:\n\n" + outputCurriculum);
-
-        //Calculate the total hours in the curriculum
-        int totalCurriculumHours = calculateTotalCurriculumHours(curriculumLines);
-        System.out.println("The total number of hours in the curriculum is " + totalCurriculumHours + ".");
-
-        //Count the number of [DEPT] courses
-        String department = "CPSC";
-        int numCoursesInDept = countNumDEPTCourses(curriculumLines, department);
-        System.out.println("\nThere are " + numCoursesInDept + " course(s) in the " + department + " department.");
-
-        //Determine if a course is in the curriculum
-        String course = "CPSC 2740";
-        boolean courseInCurriculum = checkIfInCurriculum(curriculumLines, course);
-        if (courseInCurriculum){
-            System.out.println("\n" + course + " is in the curriculum.");
-        } else {
-            System.out.println("\n" + course + " is not in the curriculum.");
-        }*/
+        //The Curriculum
 
         //Read, store, and output the data from "curriculum.dat"
         Curriculum curriculum = new Curriculum("curriculum.dat");
@@ -53,6 +30,12 @@ public class Main {
         } else {
             System.out.println("\n" + course + " is not in the curriculum.");
         }
+
+        //The Transcript
+
+        //Read and store the data from "transcript.txt"
+        Transcript transcript = new Transcript("transcript.txt");
+        System.out.println("\n\nTranscript:\n" + transcript);
 
 
 

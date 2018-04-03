@@ -8,7 +8,9 @@ public class Curriculum {
     //instance variables
     private ArrayList<String> curriculumLines;
 
+
     //methods
+
     public Curriculum(String fileName) throws IOException {
         ArrayList<String> lines = new ArrayList<String>();
         BufferedReader in = new BufferedReader(new FileReader(fileName));
