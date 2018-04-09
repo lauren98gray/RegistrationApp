@@ -41,4 +41,29 @@ public class Transcript {
         }
         return sum;
     }
+
+    public ArrayList<Course> getTranscript() {
+        return transcript;
+    }
+
+    public Course getCourse(int index) {
+        return transcript.get(index);
+    }
+
+    public boolean checkIfInCurriculum(Course transcriptCourse, Curriculum curriculum){
+        if (curriculum.checkIfInCurriculum(transcriptCourse)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfInTranscript(Course course) {
+        for (Course course1 : transcript){
+            if (course.equals(course1)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

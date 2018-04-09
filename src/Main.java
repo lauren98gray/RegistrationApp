@@ -22,7 +22,6 @@ public class Main {
         int numDEPTCourses = curriculum.countNumDEPTCourses(department);
         System.out.println("\nThere are " + numDEPTCourses + " " + department + " courses in the curriculum.");
 
-
         //Check if a course is in the curriculum
         Course course = new Course("CPSC", "1720", 3);
         boolean courseInCurriculum = curriculum.checkIfInCurriculum(course);
@@ -42,11 +41,24 @@ public class Main {
 
         //Calculate the total hours in the transcript
         int totalTranscriptHours = transcript.calculateTotalHours();
-        System.out.println( "The total number of hours in this transcript is " + totalCurriculumHours + "." );
+        System.out.println( "The total number of hours in this transcript is " + totalTranscriptHours + "." );
 
-        //TODO Determine if a transcript course is also in the curriculum
+        //Determine if a transcript course is also in the curriculum
+        Course transcriptCourse = transcript.getCourse(1);
+        boolean transcriptInCurriculum = transcript.checkIfInCurriculum(transcriptCourse, curriculum);
+        if (transcriptInCurriculum){
+            System.out.println("\n" + transcriptCourse + " is in the curriculum.");
+        } else {
+            System.out.println("\n" + transcriptCourse + " is not in the curriculum.");
+        }
 
-        //TODO Determine if a course is also in the transcript courses
+        //Determine if a course is also in the transcript courses
+        boolean checkTranscript = transcript.checkIfInTranscript(course);
+        if (checkTranscript){
+            System.out.println("\n" + transcriptCourse + " is in the transcript.");
+        } else {
+            System.out.println("\n" + transcriptCourse + " is not in the transcript");
+        }
 
         //TODO Determine if the student has completed all courses needed to graduate
 

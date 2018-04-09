@@ -38,4 +38,15 @@ public class Course {
     public String toString() {
         return dept + " " + number + "   " + hours;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Course course = (Course) obj;
+        if (this.dept.equals(course.dept) &&
+                this.number.equals(course.number) &&
+                this.hours == course.hours){
+            return true;
+        }
+        return false;
+    }
 }

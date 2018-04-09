@@ -53,13 +53,6 @@ public class Curriculum {
     }
 
     public boolean checkIfInCurriculum(Course course) {
-        //keeps returning false either way
-        /*for (Course course1 : curriculum){
-            if (course.equals(course1)){
-                return true;
-            }
-        }
-        return false;*/
         if (curriculum.contains(course)){
             return true;
         }else{
@@ -67,20 +60,8 @@ public class Curriculum {
         }
     }
 
-    /*
-
-
-    public boolean checkIfInCurriculum(String course){
-        int check = 0;
-        for (String line : curriculumLines){
-            if (line.substring(0,9).equals(course)){
-                check = 1;
-            }
-        }
-        return check == 1;
+    public Course getCourseInCurriculum(int index){
+        return curriculum.get(index);
     }
-
-*/
-
 
 }
