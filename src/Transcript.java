@@ -1,28 +1,44 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Transcript {
 
     //instance variables
-    private ArrayList<String> transcriptLines;
+    private ArrayList<Course> transcript;
 
-    public Transcript(String fileName) throws IOException{
-        ArrayList<String> lines = new ArrayList<String>();
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-        for (String line = in.readLine(); line != null; line = in.readLine()) {
-            lines.add(line);
+    public Transcript(String fileName) throws FileNotFoundException {
+        transcript = new ArrayList<Course>();
+        File file = new File(fileName);
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()){
+            String line = sc.nextLine();
+
+            String[] details = line.split(" ");
+            String dept = details[0];
+            String number = details[1];
+            int hours = Integer.parseInt(details[2]);
+            transcript.add(new Course(dept, number, hours));
         }
-        transcriptLines = lines;
+
     }
 
     @Override
     public String toString() {
         String output = "";
-        for (String line : transcriptLines){
+        for (Course line : transcript){
             output += line+ "\n";
         }
         return output;
+    }
+
+    public int calculateTotalHours(){
+        int sum = 0;
+        for (Course course : transcript){
+            sum += course.getHours();
+        }
+        return sum;
     }
 }

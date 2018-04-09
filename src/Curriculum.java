@@ -1,55 +1,74 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Curriculum {
 
-    //instance variables
-    private ArrayList<String> curriculumLines;
+    private ArrayList<Course> curriculum;
 
 
-    //methods
+    public Curriculum(String fileName) throws FileNotFoundException {
+        curriculum = new ArrayList<Course>();
+        File file = new File(fileName);
+        Scanner sc = new Scanner(file);
 
-    public Curriculum(String fileName) throws IOException {
-        ArrayList<String> lines = new ArrayList<String>();
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-        for (String line = in.readLine(); line != null; line = in.readLine()) {
-            lines.add(line);
+        while (sc.hasNextLine()){
+            String line = sc.nextLine();
+
+                String[] details = line.split(" ");
+                String dept = details[0];
+                String number = details[1];
+                int hours = Integer.parseInt(details[2]);
+                curriculum.add(new Course(dept, number, hours));
         }
-        curriculumLines = lines;
     }
+
 
     @Override
     public String toString() {
         String output = "";
-        for (String line : curriculumLines){
+        for (Course line : curriculum){
             output += line+ "\n";
         }
         return output;
     }
 
-    public int calculateTotalCurriculumHours() {
-        ArrayList<Integer> hours = new ArrayList<Integer>();
-        for (String course : curriculumLines){
-            hours.add(Integer.valueOf(course.substring(course.length()-1, course.length())));
-        }
+    public int calculateTotalHours() {
         int sum = 0;
-        for (int hour : hours) {
-            sum += hour;
+        for (Course course : curriculum){
+            sum += course.getHours();
         }
         return sum;
     }
 
     public int countNumDEPTCourses(String DEPT) {
         int count = 0;
-        for (String line : curriculumLines){
-            if (line.contains(DEPT)){
+        for (Course course : curriculum){
+            if (course.getDept().equals(DEPT)){
                 count++;
             }
         }
         return count;
     }
+
+    public boolean checkIfInCurriculum(Course course) {
+        //keeps returning false either way
+        /*for (Course course1 : curriculum){
+            if (course.equals(course1)){
+                return true;
+            }
+        }
+        return false;*/
+        if (curriculum.contains(course)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /*
+
 
     public boolean checkIfInCurriculum(String course){
         int check = 0;
@@ -61,7 +80,7 @@ public class Curriculum {
         return check == 1;
     }
 
-
+*/
 
 
 }
